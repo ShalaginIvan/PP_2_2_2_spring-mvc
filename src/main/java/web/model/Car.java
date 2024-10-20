@@ -11,12 +11,15 @@ public class Car {
         this.yearOfRelease = yearOfRelease;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "model='" + model + '\'' +
-                ", series='" + series + '\'' +
-                ", yearOfRelease=" + yearOfRelease +
-                '}';
+    public String getModel() {
+        return model;
+    }
+
+    public String getSeries() {
+        return series;
+    }
+
+    public int getYearOfRelease() {
+        return yearOfRelease;
     }
 }
