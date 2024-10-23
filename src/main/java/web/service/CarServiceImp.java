@@ -1,24 +1,21 @@
 package web.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import web.Dao.CarDao;
 import web.model.Car;
-
-import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class CarServiceImp implements CarService {
 
-    public List<Car> createCars() {
-        return List.of(
-                new Car("Toyota", "Corolla", 1999),
-                new Car("Ford", "Focus", 2007),
-                new Car("Honda", "Accord", 2010),
-                new Car("Chery", "Tiggo4", 2019),
-                new Car("Лада", "Калина", 2003)
-                );
-    }
+    @Autowired
+    private CarDao carDao;
 
     @Override
-    public List<Car> getCars(List<Car> cars, int numberOfCars) {
-        return cars.subList(0, numberOfCars);
+    public List<Car> getCars(int count) {
+        // если count вне диапазона от 1 до 5, то выводим весь список
+        // если count = 0, то выводим пустую таблицу
+        return carDao.getCars((count >= 5)||(count < 0) ?  5 : count);
     }
 }
