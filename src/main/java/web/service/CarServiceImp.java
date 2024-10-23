@@ -14,8 +14,6 @@ public class CarServiceImp implements CarService {
 
     @Override
     public List<Car> getCars(int count) {
-        // если count вне диапазона от 1 до 5, то выводим весь список
-        // если count = 0, то выводим пустую таблицу
-        return carDao.getCars((count >= 5)||(count < 0) ?  5 : count);
+       return carDao.getCars(count);
     }
 }

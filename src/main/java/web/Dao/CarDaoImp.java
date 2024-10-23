@@ -4,13 +4,15 @@ import org.springframework.stereotype.Repository;
 import web.model.Car;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class CarDaoImp implements CarDao{
 
-    @Override
-    public List<Car> createCars() {
-        return List.of(
+    private List<Car> carList;
+
+    public CarDaoImp() {
+        this.carList = List.of(
                 new Car("Toyota", "Corolla", 1999),
                 new Car("Ford", "Focus", 2007),
                 new Car("Honda", "Accord", 2010),
@@ -21,6 +23,9 @@ public class CarDaoImp implements CarDao{
 
     @Override
     public List<Car> getCars(int count) {
-        return createCars().subList(0, count);
+        if(count <= 0) {
+            return carList;
+        }
+        return carList.stream().limit(count).collect(Collectors.toList());
     }
 }
